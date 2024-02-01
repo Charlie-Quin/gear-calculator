@@ -1,0 +1,162 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkip3py0dv74r"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_pp5lh"]
+
+[sub_resource type="Theme" id="Theme_0ga1y"]
+default_font_size = 80
+
+[node name="world" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0ga1y")
+script = ExtResource("1_pp5lh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.819608, 0.129412, 0.235294, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Gear Size Calculator
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Min teeth:"
+
+[node name="minTeeth" type="SpinBox" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 18.0
+value = 18.0
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ratio
+"
+
+[node name="ratio" type="SpinBox" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+step = 0.001
+value = 2.0
+prefix = "one to:"
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Center Distance
+"
+
+[node name="distance" type="SpinBox" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+step = 0.001
+value = 10.0
+allow_greater = true
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="FlowContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 150)
+layout_mode = 2
+alignment = 1
+
+[node name="module" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/module"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/module/VBoxContainer"]
+layout_mode = 2
+text = "Module:"
+horizontal_alignment = 1
+
+[node name="moduleOutput" type="Label" parent="VBoxContainer/HBoxContainer/module/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0
+"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="moduleCopy" type="Button" parent="VBoxContainer/HBoxContainer/module/VBoxContainer"]
+layout_mode = 2
+text = "copy"
+
+[node name="little gear" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/little gear"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/little gear/VBoxContainer"]
+layout_mode = 2
+text = "Small gear teeth"
+horizontal_alignment = 1
+
+[node name="smallToothOutput" type="Label" parent="VBoxContainer/HBoxContainer/little gear/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0
+"
+horizontal_alignment = 1
+
+[node name="smallTeethCopy" type="Button" parent="VBoxContainer/HBoxContainer/little gear/VBoxContainer"]
+layout_mode = 2
+text = "copy"
+
+[node name="large gear" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/large gear"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/large gear/VBoxContainer"]
+layout_mode = 2
+text = "Big Gear teeth"
+horizontal_alignment = 1
+
+[node name="bigTeethOutput" type="Label" parent="VBoxContainer/HBoxContainer/large gear/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0
+"
+horizontal_alignment = 1
+
+[node name="bigteethCopy" type="Button" parent="VBoxContainer/HBoxContainer/large gear/VBoxContainer"]
+layout_mode = 2
+text = "copy"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/module/VBoxContainer/moduleCopy" to="." method="_on_module_copy_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/little gear/VBoxContainer/smallTeethCopy" to="." method="_on_small_teeth_copy_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/large gear/VBoxContainer/bigteethCopy" to="." method="_on_bigteeth_copy_pressed"]
